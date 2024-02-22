@@ -34,5 +34,5 @@ CREATE TABLE group_member
     contact_id FOREIGN KEY REFERENCES contact(contact_id),
     conversation_id FOREIGN KEY REFERENCES conversation(conversation_id),
     joined_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    left_datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    left_datetime TIMESTAMP DEFAULT NULL
 );

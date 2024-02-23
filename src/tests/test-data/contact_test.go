@@ -26,15 +26,15 @@ func TestRetrievetContact(t *testing.T) {
 	t.Log("Seeing if user is correctly added to the ")
 	db, mock := NewMock()
 
-	query := "SELECT * FROM contact WHERE contact_id=?"
+	query := "SELECT first_name, last_name, phone_number FROM contact WHERE contact_id=%s"
 
-	rows := sqlmock.NewRows([]string{"contact_id", "first_name", "last_name", "phone_number"}).
-		AddRow(1, "John", "Smith", "518-222-3456")
+	rows := sqlmock.NewRows([]string{"first_name", "last_name", "phone_number"}).
+		AddRow("John", "Smith", 5182223456)
 
 	mock.ExpectQuery(query).WithArgs(1).WillReturnRows(rows)
 
 	result := handlers.RetrieveContactByID(db, 1)
-
+	t.Log(result)
 	assert.NotNil(t, result)
 
 }
